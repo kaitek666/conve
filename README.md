@@ -25,7 +25,10 @@ Finds every file in given directory and judging by their content, renames each f
 1. Clone, obviously
 2. Download LibXL library.
 3. Copy `.lib` file from `lib`, copy all headers into `inc` folder and remember to include the `dll` file from `bin`.
-4. Compile. Launch.
+4. Create a solution, use the conve.cpp as a main file.
+5. Set C++ version to 17, include the LibXL library
+6. Compile. Launch.
+7. If it fails to launch, you must have forgotten about the dll file.
 
 ## Usage
 `conve.exe "path"`
