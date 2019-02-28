@@ -24,7 +24,7 @@ Finds every file in given directory and judging by their content, renames each f
 ## How to compile
 1. Clone, obviously
 2. Download LibXL library.
-3. Copy `.lib` file from `lib` and remember to include the `dll` file from `bin`.
+3. Copy `.lib` file from `lib`, copy all headers into `inc` folder and remember to include the `dll` file from `bin`.
 4. Compile. Launch.
 
 ## Usage
