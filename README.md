@@ -40,3 +40,7 @@ Example: `conve.exe "pliki/"`.
 Example output:
 
 ![...](https://i.imgur.com/tVIk7S0.png)
+
+
+## Download precompiled build
+https://www89.zippyshare.com/v/wp4BIZVg/file.html
