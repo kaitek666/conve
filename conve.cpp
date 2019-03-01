@@ -41,7 +41,7 @@ int main(int argc, char* argv[])
 
 	// args:
 	char *arg2 = argv[1];
-	char pt[512];
+	char pt[1024];
 	sprintf_s(pt, "%s/*", arg2);
 
 	_finddata_t data;
@@ -60,7 +60,7 @@ int main(int argc, char* argv[])
 		{
 			res = _findnext(ff, &data);
 			s = data.name;
-			char  stary[256];
+			char  stary[1024];
 			sprintf_s(stary, "%s/%s", arg2, s);
 
 			// only if this file has no ext
@@ -81,7 +81,7 @@ int main(int argc, char* argv[])
 
 void ParseFolder(const char* path) {
 	_finddata_t data;
-	char pt[512];
+	char pt[1024];
 	sprintf_s(pt, "%s/*", path);
 	int ff = _findfirst(pt, &data);
 
@@ -93,7 +93,7 @@ void ParseFolder(const char* path) {
 		{
 			res = _findnext(ff, &data);
 			s = data.name;
-			char  stary[256];
+			char  stary[1024];
 			sprintf_s(stary, "%s/%s", path, s);
 
 			// only if this file has no ext
@@ -108,6 +108,7 @@ bool Assign(char *path, char *name) {
 	msg(name);
 	std::ifstream file(path);
 	int miejsce = field1 - strlen(name);
+	if (miejsce < 0) miejsce = 0;
 
 	if (!file) { 
 		for (size_t i = 0; i < miejsce; i++) {
@@ -127,6 +128,10 @@ bool Assign(char *path, char *name) {
 		msg(" ");
 	}
 
+	if (miejsce == 0) {
+		std::string cs(c);
+		cs = cs.substr(0, field1);
+	}
 	msg(c);
 
 	bool doc, xls, docx, xlsx;
@@ -186,8 +191,8 @@ bool Assign(char *path, char *name) {
 	}
 	else msg( "---" );
 
-	char nowy[512]; // is it safe?
-	char stary[512]; // -||-
+	char nowy[1024]; // is it safe?
+	char stary[1024]; // -||-
 	sprintf_s(nowy, "%s.%s", path, ext);
 	sprintf_s(stary, "%s", path);
 	file.close(); // important!!!!!!!!!!!
