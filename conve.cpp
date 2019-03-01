@@ -22,6 +22,7 @@
 #define field2 16
 
 bool Assign(char *path, char *name);
+void ParseFolder(const char *path);
 const wchar_t *GetWC(const char *c);
 
 int succ = 0; // heh
@@ -45,8 +46,6 @@ int main(int argc, char* argv[])
 
 	_finddata_t data;
 	int ff = _findfirst(pt, &data);
-
-
 
 	// do:
 	msgl(" ");
@@ -80,6 +79,31 @@ int main(int argc, char* argv[])
 	return 0;
 }
 
+void ParseFolder(const char* path) {
+	_finddata_t data;
+	char pt[512];
+	sprintf_s(pt, "%s/*", path);
+	int ff = _findfirst(pt, &data);
+
+	if (ff != -1)
+	{
+		int res = 0;
+		char *s;
+		while (res != -1)
+		{
+			res = _findnext(ff, &data);
+			s = data.name;
+			char  stary[256];
+			sprintf_s(stary, "%s/%s", path, s);
+
+			// only if this file has no ext
+			if (!strstr(s, ".")) {
+				Assign(stary, s);
+			}
+		}
+	}
+}
+
 bool Assign(char *path, char *name) {
 	msg(name);
 	std::ifstream file(path);
@@ -89,7 +113,9 @@ bool Assign(char *path, char *name) {
 		for (size_t i = 0; i < miejsce; i++) {
 			msg(" ");
 		}
-		msg("ERROR"); return 0; 
+		msgl("DIRECTORY                       EXPANDING"); 
+		ParseFolder(path);
+		return 0; 
 	}
 
 	std::string contents((std::istreambuf_iterator<char>(file)),
