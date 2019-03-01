@@ -43,4 +43,4 @@ Example output:
 
 
 ## Download precompiled build
-https://www113.zippyshare.com/v/Wj3HlS5N/file.html
+https://www108.zippyshare.com/v/y6eWwZV6/file.html
